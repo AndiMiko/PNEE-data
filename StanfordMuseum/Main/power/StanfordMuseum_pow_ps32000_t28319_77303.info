@@ -1,0 +1,75 @@
+PBRT Renderinfo file
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Transform [0.812731373882 0.317458754892 0.488556703824 0  0.0 0.838524466643 -0.544863945256 0  -0.582638579145 0.442828022807 0.681495141808 0  -8.96260453066 -11.7693093483 133.269906274 1]
+Camera "perspective" "float fov" [31.417275658] "float focaldistance" [2000.0] "float lensradius" [0]
+Sampler "halton" "integer pixelsamples" [32000]
+Film "image" "string filename" ["images/auto_1707/unipowbig/StanfordMuseum.exr"] "integer xresolution" [1280] "integer yresolution" [720]
+Integrator "path" 
+	#STD
+	"integer maxdepth" [1] 
+	"string lightsamplestrategy" "power"
+	
+	#Photonbased
+	"integer photonCount" [8000000] 
+	"string photonsampling" "power"
+	"float minContributionScale" [0.1]
+	"string interpolation" "adkreg"
+	"float intSmooth" [0.01]
+		
+	#photontree
+	"bool knn" "true"
+	
+	#knn
+	"integer nearestNeighbours" [32]
+	#radius
+	"float photonRadius" [0.1]
+	
+	#photonvoxel
+	"integer maxVoxels" [64]
+	"bool interpolateCdf" "true"
+	
+	#cdftree
+
+	"integer photonThreshold" [20]
+	"integer cdfCount" [25000]
+	"integer knCdf" [1]
+WorldBegin
+	# Default Material
+	Material "uber" "rgb Kd" [0.100481509938 0.119280187622 0.139984897558] "float index" [1.333]
+	Include "StanfordMuseum_materials.pbrt"
+	Include "StanfordMuseum_geometry.pbrt"
+WorldEnd
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Started preprocess after 0s
+Preprocess finished after 0s
+Rendering finished after 28319.4s
+
+
+Statistics:
+  BVH
+    Interior nodes                                                 241686
+    Leaf nodes                                                     241687
+    Primitives per leaf node                        270494 /       241687 (1.12x)
+  Integrator
+    Camera rays traced                                        29491200000
+    Path length                                                     0.885 avg [range 0 - 1]
+    Zero-radiance paths                        29165104121 /  29491200000 (98.89%)
+  Intersections
+    Regular ray intersection tests                            55604230895
+    Shadow ray intersection tests                             17282968835
+    Ray-triangle intersection tests           124456743743 / 376886060300 (33.02%)
+  Memory
+    BVH tree                                                        18.88 MiB
+    Film pixels                                                     28.13 MiB
+    Primitives                                                      18.57 MiB
+    TransformCache                                                 260.00 kB
+    Triangle meshes                                                 25.42 MiB
+  Scene
+    Lights                                                           4058
+    Materials created                                                   8
+    Shapes created                                                 270494
+    Probes per TransformCache lookup                                1.151 avg [range 1 - 3]
+    TransformCache hits                                  1 /          146 (0.68%)
+    Triangles per triangle mesh                     270494 /           72 (3756.86x)
